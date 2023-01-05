@@ -7,4 +7,4 @@ Goal of KnowledgeBook
  - Opportunity to get examples from old projects I made, if I have to do something similar
  - Showing all knowlage and skills about Java
 
-Pleas notice that this project I's not jet finished and that I have NOT implemented all my projects yet! 
+Pleas notice that this project is not jet finished and that I have NOT implemented all my projects yet! 
