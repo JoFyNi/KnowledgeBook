@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Odd-Even-Transposition-Sort</title>
+</head>
+<body>
+
+<h1>Odd-Even Transposition Sort</h1>
+
+<p>The Odd-Even Transposition Sort, also known as the "Brick Sort" algorithm, is a parallel sorting algorithm that improves on the performance of the Bubble sort. It works by sorting pairs of elements first in an odd-even pattern and then in the opposite even-odd pattern, with the goal of reducing the number of inversions present in the input array. It's based on the idea of communicating processes, in this algorithm, each process compares its own element with the neighbor in a specific order, and if the neighbor's element is greater, the two elements are swapped.</p>
+
+<h2>Example</h2>
+
+<p>Let's consider the following unsorted list: [5, 2, 9, 1, 5, 6]</p>
+
+<pre>
+Odd-Even Sort Pass:
+
+5 2 9 1 5 6
+2 5 9 1 5 6
+2 1 9 5 5 6
+2 1 5 9 5 6
+2 1 5 5 9 6
+
+Even-Odd Sort Pass:
+
+2 1 5 5 9 6
+1 2 5 5 9 6
+1 2 5 5 6 9
+</pre>
+
+<p>The list is now sorted: [1, 2, 5, 5, 6, 9]</p>
+
+<h2>Pseudocode</h2>
+
+<pre>
+procedure OddEvenSort(arr)
+    isSorted = false
+    while !isSorted
+        isSorted = true
+        for i = 0 to arr.length-1 step 2
+            if i+1 < arr.length and arr[i] > arr[i+1]
+                swap(arr[i], arr[i+1])
+                isSorted = false
+                for i = 1 to arr.length-1 step 2
+                if i+1 < arr.length and arr[i] > arr[i+1]
+                swap(arr[i], arr[i+1])
+                isSorted = false
+                end while
+                end procedure
+</pre>
+<p>As you can see, in the pseudocode, we have two nested loops, the outer while loop continues until the array is sorted and the inner for loop iterates through the array with the steps of 2, first in an odd-even pattern and then in the even-odd pattern, comparing each pair of elements and swapping them if they are in the wrong order. This process is repeated until no more swaps are needed, indicating that the array is now sorted.
+</p>
+<p>It's worth noting that, when compared to the Bubble sort algorithm, the odd-even transposition sort has an improved performance, especially on large datasets and when implemented in parallel computing environments. But, it has also a worst case time complexity of O(n^2) and not an in-place sorting algorithm
+</p>
+</body>
+</html>
