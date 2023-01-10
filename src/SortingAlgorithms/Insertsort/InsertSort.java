@@ -1,8 +1,8 @@
-package Algorithmen.Insertsort;
+package SortingAlgorithms.Insertsort;
 
 public class InsertSort {
 
-    public static void doSomething() {
+    public static void start() {
         System.out.println("Insertsort is here");
     }
 }

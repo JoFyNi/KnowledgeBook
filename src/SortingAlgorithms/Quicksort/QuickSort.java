@@ -1,10 +1,10 @@
-package Algorithmen.Quicksort;
+package SortingAlgorithms.Quicksort;
 
 import java.util.Arrays;
 
-public class quicksort {
-    public static int[] intArray = { 16,24,17,22,23,7,4,26,2,75,58,73,69 };
-    public static void insertionSort(int[] arr){
+public class QuickSort {
+    public static int[] arr = { 16,24,17,22,23,7,4,26,2,75,58,73,69 };
+    public static void start(){
         // compare int i with the intArray (arr)
         for( int i = 1; i < arr.length; i++ ) {
             // make temp equal the intArray based on the int i
@@ -27,10 +27,5 @@ public class quicksort {
                 }
             }
         }
-    }
-
-    public static void main(String[] args) {
-        // calling the insertionSort Method with intArray
-        insertionSort(intArray);
     }
 }

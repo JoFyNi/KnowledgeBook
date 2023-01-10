@@ -1,8 +1,8 @@
-package Algorithmen.Mergesort;
+package SortingAlgorithms.Mergesort;
 
 public class MergeSort {
 
-    public static void doSomething() {
+    public static void start() {
         System.out.println("Mergesort is here");
     }
 }
