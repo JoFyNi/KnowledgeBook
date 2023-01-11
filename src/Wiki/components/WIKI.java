@@ -118,7 +118,6 @@ public class WIKI {
                 parentNode.add(new DefaultMutableTreeNode(child.name));
             }
         }
-
         // need to be in here (KeyListener == 0 if line is missing)
         searchField = new JTextField();
         searchField.addKeyListener(new KeyAdapter() {
