@@ -13,37 +13,32 @@ import SortingAlgorithms.Shakersort.ShakerSort;
 import SortingAlgorithms.Simplesort.SimpleSort;
 
 import javax.swing.*;
-import javax.swing.tree.DefaultMutableTreeNode;
-import javax.swing.tree.TreePath;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
+import javax.swing.tree.*;
+import java.awt.*;
+import java.awt.event.*;
 import java.io.*;
 import java.net.URL;
 import java.util.*;
+import java.util.List;
 
 public class WIKI {
     public JPanel MainPanel;
     public JPanel SidePanel;
-    public JPanel BottemPanel;
+    public JPanel BottomPanel;
     public JPanel TopPanel;
     public JEditorPane editPane;
     public JTree sideTree;
-    public JTextArea bottemAreaPanel;
-    private JTextField SearchField;
+    public JTextArea bottomTextAreaPanel;
+    public JTextField searchField;
+    public JToolBar PanelToolBar;
+    public JButton ToolBarBtn;
+    // create list to hold ToDo's
+    ArrayList<String> toDoList = new ArrayList<>();
 
-    public void main(String[] args) {
-        content();
-    }
     public JPanel getMainPanel() {
         return MainPanel;
     }
-    public void content() {
-
-        //String first = textField.getText();
-        //editPane.setText(first + "." + pageOne());
-    }
-
-    /**
+      /**
      *  createUIComponents get called bye the GUI (WIKI.form)
      *  specific information and changes for J
      */
@@ -93,6 +88,30 @@ public class WIKI {
                 parentNode.add(new DefaultMutableTreeNode(child.name));
             }
         }
+
+        // need to be in here (KeyListener == 0 if line is missing)
+        searchField = new JTextField();
+        searchField.addKeyListener(new KeyAdapter() {
+            public void keyPressed(KeyEvent e) {
+                System.out.println("key listener");
+                if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+                    DefaultMutableTreeNode node = findNode(rootNode, searchField.getText());
+                    System.out.println(node);
+                    if (node != null) {
+                        // model -> Path -> from node (clicked)
+                        TreeNode[] nodes = ((DefaultTreeModel) sideTree.getModel()).getPathToRoot(node);
+                        TreePath path = new TreePath(nodes);
+                        sideTree.scrollPathToVisible(path);
+                        sideTree.setSelectionPath(path);
+                        bottomTextAreaPanel.setText(path.toString());
+                        System.out.println("erfolg");
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Node not found!");
+                    }
+                }
+            }
+        });
+
         // Create the tree with the root node
         sideTree = new JTree(rootNode);
         Map<String, String> methodMap = new HashMap<>();
@@ -101,13 +120,11 @@ public class WIKI {
         methodMap.put("Mergesort", "mergesortMethod");
         // and so on for all the nodes
 
-
         sideTree.addMouseListener(new MouseAdapter() {
             public void mousePressed(MouseEvent e) {
                 // Get the row and path of the selected tree node
                 int selRow = sideTree.getRowForLocation(e.getX(), e.getY());
                 TreePath selPath = sideTree.getPathForLocation(e.getX(), e.getY());
-
                 // If a valid row was selected
                 if (selRow != -1) {
                     if (e.getClickCount() == 1) {
@@ -272,9 +289,9 @@ public class WIKI {
                                 ee.printStackTrace();
                             }
                         } else if (node != null && node.getUserObject().equals("DeadLock")) {
-                            //CallableAndFuture.start();
+                            //DeadLock.start();
                             // opens a HTML file on the editPane
-                            File file = new File("src\\Multithreading\\CallableAndFuture\\CallableAndFuture.html");
+                            File file = new File("src\\Multithreading\\DeadLock\\DeadLock.html");
                             editPane.setEditable(false);
                             try {
                                 // Load the HTML file
@@ -284,9 +301,9 @@ public class WIKI {
                                 ee.printStackTrace();
                             }
                         } else if (node != null && node.getUserObject().equals("InterruptingThreads")) {
-                            //CallableAndFuture.start();
+                            //InterruptingThreads.start();
                             // opens a HTML file on the editPane
-                            File file = new File("src\\Multithreading\\CallableAndFuture\\CallableAndFuture.html");
+                            File file = new File("src\\Multithreading\\InterruptingThreads\\InterruptingThreads.html");
                             editPane.setEditable(false);
                             try {
                                 // Load the HTML file
@@ -296,9 +313,9 @@ public class WIKI {
                                 ee.printStackTrace();
                             }
                         } else if (node != null && node.getUserObject().equals("Latches")) {
-                            //CallableAndFuture.start();
+                            //Latches.start();
                             // opens a HTML file on the editPane
-                            File file = new File("src\\Multithreading\\CallableAndFuture\\CallableAndFuture.html");
+                            File file = new File("src\\Multithreading\\Latches\\Latches.html");
                             editPane.setEditable(false);
                             try {
                                 // Load the HTML file
@@ -308,9 +325,9 @@ public class WIKI {
                                 ee.printStackTrace();
                             }
                         } else if (node != null && node.getUserObject().equals("LowLevelSynchronization")) {
-                            //CallableAndFuture.start();
+                            //LowLevelSynchronization.start();
                             // opens a HTML file on the editPane
-                            File file = new File("src\\Multithreading\\CallableAndFuture\\CallableAndFuture.html");
+                            File file = new File("src\\Multithreading\\LowLevelSynchronization\\LowLevelSynchronization.html");
                             editPane.setEditable(false);
                             try {
                                 // Load the HTML file
@@ -320,9 +337,9 @@ public class WIKI {
                                 ee.printStackTrace();
                             }
                         } else if (node != null && node.getUserObject().equals("ProducerConsumer")) {
-                            //CallableAndFuture.start();
+                            //ProducerConsumer.start();
                             // opens a HTML file on the editPane
-                            File file = new File("src\\Multithreading\\CallableAndFuture\\CallableAndFuture.html");
+                            File file = new File("src\\Multithreading\\ProducerConsumer\\ProducerConsumer.html");
                             editPane.setEditable(false);
                             try {
                                 // Load the HTML file
@@ -332,9 +349,9 @@ public class WIKI {
                                 ee.printStackTrace();
                             }
                         } else if (node != null && node.getUserObject().equals("ReEntrantLock")) {
-                            //CallableAndFuture.start();
+                            //ReEntrantLock.start();
                             // opens a HTML file on the editPane
-                            File file = new File("src\\Multithreading\\CallableAndFuture\\CallableAndFuture.html");
+                            File file = new File("src\\Multithreading\\ReEntrantLock\\ReEntrantLock.html");
                             editPane.setEditable(false);
                             try {
                                 // Load the HTML file
@@ -344,9 +361,9 @@ public class WIKI {
                                 ee.printStackTrace();
                             }
                         } else if (node != null && node.getUserObject().equals("Semaphores")) {
-                            //CallableAndFuture.start();
+                            //Semaphores.start();
                             // opens a HTML file on the editPane
-                            File file = new File("src\\Multithreading\\CallableAndFuture\\CallableAndFuture.html");
+                            File file = new File("src\\Multithreading\\Semaphores\\Semaphores.html");
                             editPane.setEditable(false);
                             try {
                                 // Load the HTML file
@@ -356,9 +373,9 @@ public class WIKI {
                                 ee.printStackTrace();
                             }
                         } else if (node != null && node.getUserObject().equals("StopAndRun")) {
-                            //CallableAndFuture.start();
+                            //StopAndRun.start();
                             // opens a HTML file on the editPane
-                            File file = new File("src\\Multithreading\\CallableAndFuture\\CallableAndFuture.html");
+                            File file = new File("src\\Multithreading\\StopAndRun\\StopAndRun.html");
                             editPane.setEditable(false);
                             try {
                                 // Load the HTML file
@@ -368,9 +385,9 @@ public class WIKI {
                                 ee.printStackTrace();
                             }
                         } else if (node != null && node.getUserObject().equals("SwingWithSwingWorker")) {
-                            //CallableAndFuture.start();
+                            //SwingWithSwingWorker.start();
                             // opens a HTML file on the editPane
-                            File file = new File("src\\Multithreading\\CallableAndFuture\\CallableAndFuture.html");
+                            File file = new File("src\\Multithreading\\SwingWithSwingWorker\\SwingWithSwingWorker.html");
                             editPane.setEditable(false);
                             try {
                                 // Load the HTML file
@@ -380,9 +397,9 @@ public class WIKI {
                                 ee.printStackTrace();
                             }
                         } else if (node != null && node.getUserObject().equals("ThreadPool")) {
-                            //CallableAndFuture.start();
+                            //ThreadPool.start();
                             // opens a HTML file on the editPane
-                            File file = new File("src\\Multithreading\\CallableAndFuture\\CallableAndFuture.html");
+                            File file = new File("src\\Multithreading\\ThreadPool\\ThreadPool.html");
                             editPane.setEditable(false);
                             try {
                                 // Load the HTML file
@@ -392,9 +409,9 @@ public class WIKI {
                                 ee.printStackTrace();
                             }
                         } else if (node != null && node.getUserObject().equals("WaitAndNotify")) {
-                            //CallableAndFuture.start();
+                            //WaitAndNotify.start();
                             // opens a HTML file on the editPane
-                            File file = new File("src\\Multithreading\\CallableAndFuture\\CallableAndFuture.html");
+                            File file = new File("src\\Multithreading\\WaitAndNotify\\WaitAndNotify.html");
                             editPane.setEditable(false);
                             try {
                                 // Load the HTML file
@@ -404,9 +421,9 @@ public class WIKI {
                                 ee.printStackTrace();
                             }
                         } else if (node != null && node.getUserObject().equals("Workers")) {
-                            //CallableAndFuture.start();
+                            //Workers.start();
                             // opens a HTML file on the editPane
-                            File file = new File("src\\Multithreading\\CallableAndFuture\\CallableAndFuture.html");
+                            File file = new File("src\\Multithreading\\Workers\\Workers.html");
                             editPane.setEditable(false);
                             try {
                                 // Load the HTML file
@@ -416,67 +433,13 @@ public class WIKI {
                                 ee.printStackTrace();
                             }
                         }
-
-/*
-                        // reading the Path
-                        if (node != null && !node.isRoot()) {
-                            // Extract the names of the nodes in the path
-                            String methodLink = "";
-                            for (Object pathNode : node.getUserObjectPath()) {
-                                methodLink += pathNode + ".start();";
-                            }
-                            // Remove the last "." from the method link
-                            methodLink = methodLink.substring(0, methodLink.length() - 1);
-                            System.out.println(methodLink);
-                            editPane.setText(methodLink);
-                        }
-
- */
                     }
                 }
             }
         });
-/*
-sideTree.addMouseListener(new MouseAdapter() {
-    public void mousePressed(MouseEvent e) {
-        int selRow = sideTree.getRowForLocation(e.getX(), e.getY());
-        TreePath selPath = sideTree.getPathForLocation(e.getX(), e.getY());
-        if (selRow != -1) {
-            if (e.getClickCount() == 1) {
-                DefaultMutableTreeNode node = (DefaultMutableTreeNode) selPath.getLastPathComponent();
-                Object userObject = node.getUserObject();
-                String text = nodeTextMap.get(userObject);
-                if (text != null) {
-                    editPane.setText(text);
-                }
-                // Check if the user object is an instance of Node
-                if (userObject instanceof Node) {
-                    Node treeNode = (Node) userObject;
-                    // Check if the Node has a corresponding method in the OtherClass
-                    Method method = OtherClass.class.getMethod(treeNode.name);
-                    if (method != null) {
-                        // Create an instance of OtherClass
-                        OtherClass otherClass = new OtherClass();
-                        // Invoke the method on the OtherClass instance
-                        method.invoke(otherClass);
-                    }
-                }
-            }
-        }
+        ToolBarBtn = new JButton("ToDo's");
+        ToolBarBtn.addActionListener(new startToDoList());
     }
-});
-
-
-// Add the tree to a scroll pane
-JScrollPane treeScrollPane = new JScrollPane(sideTree);
-
-// Add the tree and edit pane to the top panel
-TopPanel.add(treeScrollPane, BorderLayout.WEST);
-TopPanel.add(editPane, BorderLayout.CENTER);
- */
-
-    }
-
     private static class Node {
         String name;
         List<Node> children;
@@ -494,6 +457,29 @@ TopPanel.add(editPane, BorderLayout.CENTER);
             this.treeNode = new DefaultMutableTreeNode(this);
             nodeTextMap.put(this, text);
         }
+    }
+
+    public DefaultMutableTreeNode findNode(DefaultMutableTreeNode tree, String nodeStr) {
+        DefaultMutableTreeNode node = tree; // tree is not used?!
+        TreeModel model = sideTree.getModel();
+        for (int i = 0; i < model.getChildCount(model.getRoot()); i++) {
+            node = (DefaultMutableTreeNode) model.getChild(model.getRoot(), i);
+            // return node if node.string is == nodeStr
+            if (node.toString().equals(nodeStr)) {
+                System.out.println(node);
+                return node;
+            }
+            //  Emulator e ... -> return n (nextElement from DefaultMutableTreeNode
+            for (Enumeration e = node.breadthFirstEnumeration(); e.hasMoreElements();) {
+                DefaultMutableTreeNode n = (DefaultMutableTreeNode) e.nextElement();
+                if (n.toString().equals(nodeStr)) {
+                    System.out.println(n);
+                    return n;
+                }
+            }
+        }
+        System.out.println("fertig?");
+        return null;
     }
 
     // Map to store the text for each node
