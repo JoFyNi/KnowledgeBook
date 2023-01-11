@@ -34,6 +34,7 @@ public class WIKI {
     public JButton ToolBarBtn;
     // create list to hold ToDo's
     ArrayList<String> toDoList = new ArrayList<>();
+    List<Node> nodes;
 
     public JPanel getMainPanel() {
         return MainPanel;
@@ -47,7 +48,7 @@ public class WIKI {
         DefaultMutableTreeNode rootNode = new DefaultMutableTreeNode("General");
 
         // Create a list of nodes
-        List<Node> nodes = Arrays.asList(
+        nodes = Arrays.asList(
                 new Node("SortingAlgorithms", Arrays.asList(
                         new Node("BubbleSort", "Text for Bubblesort node"),
                         new Node("InsertSort", "Text for Insertsort node"),
@@ -63,6 +64,24 @@ public class WIKI {
                         new Node("BinarySearch", "Text for BinarySearch node"),
                         new Node("InterpolationSearch", "Text for InterpolationSearch node")
                 )),
+                /*
+                new Node("Algorithm", Arrays.asList(
+                        new Node("SortingAlgorithms", Arrays.asList(
+                                new Node("BubbleSort", "Text for Bubblesort node"),
+                                new Node("InsertSort", "Text for Insertsort node"),
+                                new Node("MergeSort", "Text for Mergesort node"),
+                                new Node("OETSort", "Text for OETsort node"),
+                                new Node("QuickSort", "Text for Quicksort node"),
+                                new Node("RippleSort", "Text for Ripplesort node"),
+                                new Node("SelectSort", "Text for Selectsort node"),
+                                new Node("ShakerSort", "Text for Shakersort node"),
+                                new Node("SimpleSort", "Text for Simplesort node")
+                        )),
+                        new Node("SearchAlgorithms", Arrays.asList(
+                                new Node("BinarySearch", "Text for BinarySearch node"),
+                                new Node("InterpolationSearch", "Text for InterpolationSearch node")
+                )))),
+                 */
                 new Node("Multithreading", Arrays.asList(
                         new Node("CallableAndFuture", "Text for CallableAndFuture node"),
                         new Node("DeadLock", "Text for DeadLock node"),
@@ -96,8 +115,13 @@ public class WIKI {
                 System.out.println("key listener");
                 if (e.getKeyCode() == KeyEvent.VK_ENTER) {
                     DefaultMutableTreeNode node = findNode(rootNode, searchField.getText());
-                    System.out.println(node);
                     if (node != null) {
+                        Trie trie = new Trie();
+                        TrieNode.setWord(String.valueOf(nodes));
+                        trie.insert(nodes);
+                        String prefix = searchField.getText();
+                        List<String> words = trie.search(prefix);
+                        System.out.println("Words with prefix '" + prefix + "': " + words);
                         // model -> Path -> from node (clicked)
                         TreeNode[] nodes = ((DefaultTreeModel) sideTree.getModel()).getPathToRoot(node);
                         TreePath path = new TreePath(nodes);
@@ -111,7 +135,6 @@ public class WIKI {
                 }
             }
         });
-
         // Create the tree with the root node
         sideTree = new JTree(rootNode);
         Map<String, String> methodMap = new HashMap<>();
@@ -119,7 +142,6 @@ public class WIKI {
         methodMap.put("Insertsort", "insertsortMethod");
         methodMap.put("Mergesort", "mergesortMethod");
         // and so on for all the nodes
-
         sideTree.addMouseListener(new MouseAdapter() {
             public void mousePressed(MouseEvent e) {
                 // Get the row and path of the selected tree node
@@ -438,19 +460,18 @@ public class WIKI {
             }
         });
         ToolBarBtn = new JButton("ToDo's");
+        // ActionsListener as a class with Implement ActionListener
         ToolBarBtn.addActionListener(new startToDoList());
     }
-    private static class Node {
+    public static class Node {
         String name;
         List<Node> children;
         DefaultMutableTreeNode treeNode;
-
         Node(String name, List<Node> children) {
             this.name = name;
             this.children = children;
             this.treeNode = new DefaultMutableTreeNode(this);
         }
-
         Node(String name, String text) {
             this.name = name;
             this.children = null;
