@@ -45,58 +45,69 @@ public class WIKI {
      */
     public void createUIComponents() {
         // Create the root node for the tree
-        DefaultMutableTreeNode rootNode = new DefaultMutableTreeNode("General");
+        DefaultMutableTreeNode rootNode = new DefaultMutableTreeNode("WIKI");
 
         // Create a list of nodes
         nodes = Arrays.asList(
                 new Node("SortingAlgorithms", Arrays.asList(
-                        new Node("BubbleSort", "Text for Bubblesort node"),
-                        new Node("InsertSort", "Text for Insertsort node"),
-                        new Node("MergeSort", "Text for Mergesort node"),
-                        new Node("OETSort", "Text for OETsort node"),
-                        new Node("QuickSort", "Text for Quicksort node"),
-                        new Node("RippleSort", "Text for Ripplesort node"),
-                        new Node("SelectSort", "Text for Selectsort node"),
-                        new Node("ShakerSort", "Text for Shakersort node"),
-                        new Node("SimpleSort", "Text for Simplesort node")
+                        new Node("BubbleSort", "Sorting algorithm that repeatedly steps through the list, compares adjacent elements and swaps them if they are in the wrong order"),
+                        new Node("InsertSort", "Algorithm that sorts element by transferring elements one at a time to the correct position"),
+                        new Node("MergeSort", "Divide and conquer algorithm that sorts elements by repeatedly dividing the input list into two halves, sorting the two halves, and then merging them back together"),
+                        new Node("QuickSort", "Sorting algorithm that selects a 'pivot' element from the list and partition the other elements into two sub-lists, according to whether they are less than or greater than the pivot"),
+                        new Node("SelectSort", "Sorting algorithm that repeatedly selects the smallest (or largest) element from the unsorted part of the list and moves it to the sorted part of the list"),
+                        new Node("ShakerSort", "Variation of bubble sort algorithm, it moves through the list in both directions")
                 )),
                 new Node("SearchAlgorithms", Arrays.asList(
-                        new Node("BinarySearch", "Text for BinarySearch node"),
-                        new Node("InterpolationSearch", "Text for InterpolationSearch node")
+                        new Node("BinarySearch", "Efficient algorithm that repeatedly divides the search interval in half"),
+                        new Node("InterpolationSearch", "Search algorithm that estimates the position of an element by using the value of the element and the value of its neighbors")
                 )),
-                /*
-                new Node("Algorithm", Arrays.asList(
-                        new Node("SortingAlgorithms", Arrays.asList(
-                                new Node("BubbleSort", "Text for Bubblesort node"),
-                                new Node("InsertSort", "Text for Insertsort node"),
-                                new Node("MergeSort", "Text for Mergesort node"),
-                                new Node("OETSort", "Text for OETsort node"),
-                                new Node("QuickSort", "Text for Quicksort node"),
-                                new Node("RippleSort", "Text for Ripplesort node"),
-                                new Node("SelectSort", "Text for Selectsort node"),
-                                new Node("ShakerSort", "Text for Shakersort node"),
-                                new Node("SimpleSort", "Text for Simplesort node")
-                        )),
-                        new Node("SearchAlgorithms", Arrays.asList(
-                                new Node("BinarySearch", "Text for BinarySearch node"),
-                                new Node("InterpolationSearch", "Text for InterpolationSearch node")
-                )))),
-                 */
+                new Node("Virus", Arrays.asList(
+                        new Node("Creating", "Process of creating a virus"),
+                        new Node("How it work", "Process of how a virus works after infecting a system"),
+                        new Node("Sending", "Different ways a virus can spread to other systems")
+                )),
+                new Node("Antivirus", Arrays.asList(
+                        new Node("Scanning", "Process of a Antivirus software looking for malware on a system"),
+                        new Node("Detecting", "Process of how a Antivirus software determine if something is malware or not"),
+                        new Node("Containing", "Process of isolating a malware from the rest of the system"),
+                        new Node("Analysing", "Process of understanding malware once it's been found"),
+                        new Node("Deleting", "Process of removing malware from a system")
+                )),
+                new Node("JFrame", Arrays.asList(
+                        new Node("Methods", "Different methods available in JFrame"),
+                        new Node("Linking", "Process of linking different JFrames"),
+                        new Node("Positioning", "How to position JFrames"),
+                        new Node("Designing", "How to design JFrames")
+                )),
                 new Node("Multithreading", Arrays.asList(
-                        new Node("CallableAndFuture", "Text for CallableAndFuture node"),
-                        new Node("DeadLock", "Text for DeadLock node"),
-                        new Node("InterruptingThreads", "Text for InterruptingThreads node"),
-                        new Node("Latches", "Text for Latches node"),
-                        new Node("LowLevelSynchronization", "Text for LowLevelSynchronization node"),
-                        new Node("ProducerConsumer", "Text for ProducerConsumer node"),
-                        new Node("ReEntrantLock", "Text for ReEntrantLock node"),
-                        new Node("Semaphores", "Text for Semaphores node"),
-                        new Node("StopAndRun", "Text for StopAndRun node"),
-                        new Node("SwingWithSwingWorker", "Text for SwingWithSwingWorker node"),
-                        new Node("SynchronizedMultiThreading", "Text for SynchronizedMultiThreading node"),
-                        new Node("ThreadPool", "Text for ThreadPool node"),
-                        new Node("WaitAndNotify", "Text for WaitAndNotify node"),
-                        new Node("Workers", "Text for Workers node")
+                        new Node("CallableAndFuture", "how to use Callable and Future objects in multithreading"),
+                        new Node("DeadLock", "what deadlock is and how to avoid it"),
+                        new Node("InterruptingThreads", "how to interrupt threads"),
+                        new Node("Latches", "the use of latches in multithreading"),
+                        new Node("LowLevelSynchronization", "the use of low-level synchronization in multithreading"),
+                        new Node("ProducerConsumer", "the use of producer-consumer design pattern in multithreading"),
+                        new Node("ReEntrantLock", "the use of ReentrantLocks in multithreading"),
+                        new Node("Semaphores", "the use of semaphores in multithreading"),
+                        new Node("StopAndRun", "the use of stop and run methods for threads"),
+                        new Node("SwingWithSwingWorker", "how to use SwingWorkers in Swing applications"),
+                        new Node("SynchronizedMultiThreading", "how to use synchronized keyword in multithreading"),
+                        new Node("ThreadPool", "the use of thread pool in multithreading"),
+                        new Node("WaitAndNotify", "the use of wait and notify methods for threads"),
+                        new Node("Workers", "how to use worker threads in multithreading")
+                )),
+                new Node("FlipperZero", Arrays.asList(
+                        new Node("Sub GHz", "Explain what sub GHz means"),
+                        new Node("125kHz RFID", "Explain what RFID is"),
+                        new Node("NFC", "Explain what NFC is"),
+                        new Node("Bluetooth", "Explain what Bluetooth is"),
+                        new Node("Infrared Transceiver", "Explain what Infrared Transceiver is"),
+                        new Node("IButton", "Explain what IButton is"),
+                        new Node("Hardware", "components of the FlipperZero"),
+                        new Node("Software", "how powerful it is really")
+                )),
+                new Node("ChatGPT", Arrays.asList(
+                        new Node("API", "how does it work?"),
+                        new Node("usage", "for what It can be used")
                 ))
         );
         // Add the nodes as child nodes to the root node
