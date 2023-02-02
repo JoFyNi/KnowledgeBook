@@ -23,7 +23,7 @@ API
  
  Beispiel eines Java Quellcodes:
  
- public class Example {
+` public class Example {
   // instance variable
   private String message;
   // constructor
@@ -41,22 +41,18 @@ API
   public static void main(String[] args) {
     // local variable
     String message = "Hello, World!";
-
     // object creation
     Example example = new Example(message);
-
     // call methods on object
     System.out.println(example.getMessage());
     example.setMessage("Goodbye, World!");
     System.out.println(example.getMessage());
   }
-}
+}`
 
-In diesem Beispiel veranschaulicht:
-
-    message ist eine Instanzvariable, die in der Klasse Example gespeichert wird.
-    Der Konstruktor Example(String message) wird aufgerufen, wenn ein neues Example-Objekt erstellt wird. Es initialisiert die Instanzvariable message.
-    Die Methoden getMessage() und setMessage(String message) bieten Zugriff auf die Instanzvariable message. Die erste Methode gibt einen Wert zurück, die zweite Methode nimmt einen Wert entgegen.
-    In der main-Methode wird eine lokale Variable message erstellt und ein Example-Objekt mit diesem Wert als Argument erstellt.
-    Schließlich werden die Methoden getMessage und setMessage aufgerufen, um den Inhalt der Instanzvariable message auszugeben und zu ändern.
+_message_ ist eine Instanzvariable, die in der Klasse Example gespeichert wird.
+Der Konstruktor _Example(String message)_ wird aufgerufen, wenn ein neues Example-Objekt erstellt wird. Es initialisiert die Instanzvariable message.
+Die Methoden _getMessage()_ und _setMessage(String message)_ bieten Zugriff auf die Instanzvariable message. Die erste Methode gibt einen Wert zurück, die zweite Methode nimmt einen Wert entgegen.
+In der _main-Methode_ wird eine lokale Variable message erstellt und ein Example-Objekt mit diesem Wert als Argument erstellt.
+Schließlich werden die Methoden _getMessage_ und _setMessage_ aufgerufen, um den Inhalt der Instanzvariable message auszugeben und zu ändern.
 
