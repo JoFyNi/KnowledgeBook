@@ -21,28 +21,23 @@ API
  
  
  
- 
  Beispiel eines Java Quellcodes:
  
  public class Example {
   // instance variable
   private String message;
-
   // constructor
   public Example(String message) {
     this.message = message;
   }
-
   // method with a return value
   public String getMessage() {
     return message;
   }
-
   // method with a parameter
   public void setMessage(String message) {
     this.message = message;
   }
-
   public static void main(String[] args) {
     // local variable
     String message = "Hello, World!";
