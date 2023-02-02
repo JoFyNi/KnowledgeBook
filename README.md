@@ -50,9 +50,9 @@ API
   }
 }`
 
-_message_ ist eine Instanzvariable, die in der Klasse Example gespeichert wird.
-Der Konstruktor _Example(String message)_ wird aufgerufen, wenn ein neues Example-Objekt erstellt wird. Es initialisiert die Instanzvariable message.
-Die Methoden _getMessage()_ und _setMessage(String message)_ bieten Zugriff auf die Instanzvariable message. Die erste Methode gibt einen Wert zurück, die zweite Methode nimmt einen Wert entgegen.
-In der _main-Methode_ wird eine lokale Variable message erstellt und ein Example-Objekt mit diesem Wert als Argument erstellt.
-Schließlich werden die Methoden _getMessage_ und _setMessage_ aufgerufen, um den Inhalt der Instanzvariable message auszugeben und zu ändern.
+_message_ ist eine Instanzvariable, die in der Klasse _Example_ gespeichert wird.
+Der Konstruktor _Example(String message)_ wird aufgerufen, wenn ein neues _Example_-Objekt erstellt wird. Es initialisiert die Instanzvariable message.
+Die Methoden _getMessage()_ und _setMessage(String message)_ bieten Zugriff auf die Instanzvariable _message_. Die erste Methode gibt einen Wert zurück, die zweite Methode nimmt einen Wert entgegen.
+In der _main_-Methode wird eine lokale Variable message erstellt und ein _Example_-Objekt mit diesem Wert als Argument erstellt.
+Schließlich werden die Methoden _getMessage_ und _setMessage_ aufgerufen, um den Inhalt der Instanzvariable _message_ auszugeben und zu ändern.
 
