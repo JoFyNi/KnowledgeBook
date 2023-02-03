@@ -8,15 +8,13 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.*;
 
+/**
+ *  This class is the main class in the package and contains methods to interact with .csv files and network communication.
+ *  It contains classes for reading and writing .csv files, starting a server and connecting to a server.
+ *  CommunicationThread interface is also part of this class for communication purposes.
+ */
 public class AllForOne {
-    /**
-     *  This class is the main class in the package and contains methods to interact with .csv files and network communication.
-     *  It contains classes for reading and writing .csv files, starting a server and connecting to a server.
-     *  CommunicationThread interface is also part of this class for communication purposes.
-     */
-
     public AllForOne() {}
-
 
     /**
      * Method list of all kind of functions link
