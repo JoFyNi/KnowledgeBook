@@ -15,9 +15,22 @@ public class AllForOne {
 
     /**
      * Method list of all kind of functions
-     * CSVReader -> reading .csv files and add them to a ArrayList records
-     * CSVWriter -> write inside .csv files
-     * CSVScanner -> reading a .csv file to check for different parameters
+     * CSV class
+     *      CSVReader -> reading .csv files and add them to a ArrayList records
+     *      CSVWriter -> write inside .csv files
+     *      CSVScanner -> reading a .csv file to check for different parameters
+     *
+     * Server class
+     *      Server -> Server(port)
+     *      connect -> create connection points
+     *
+     * Client class
+     *      Client -> Client(port, ip)
+     *      connect -> connect to open connection points (server)
+     *
+     * CommunicationThread Interface
+     *  - communication parameter
+     *
      */
 
     static class CSV {
