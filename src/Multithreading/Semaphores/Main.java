@@ -1,4 +1,4 @@
-package Semaphores;
+package Multithreading.Semaphores;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -13,7 +13,7 @@ public class Main {
             executor.submit(new Runnable() {
                 @Override
                 public void run() {
-                    Connection.getInstance().connect();
+                    Semaphores.Connection.getInstance().connect();
                 }
             });
         }

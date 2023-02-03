@@ -31,3 +31,14 @@ Die Methoden **getMessage()** und **setMessage(String message)** bieten Zugriff 
 In der **main**-Methode wird eine lokale Variable message erstellt und ein **Example**-Objekt mit diesem Wert als Argument erstellt.
 Schließlich werden die Methoden **getMessage** und **setMessage** aufgerufen, um den Inhalt der Instanzvariable **message** auszugeben und zu ändern.
 
+
+Methoden Bibliothek -> [AllForOne.java](https://github.com/JoFyNi/KnowledgeBook/tree/master/src/main/recources/AllForOne.java)
+
+Eine Bibliothek zur Entnahme von Methoden
+
+Klasse:
+ - CSV
+   - Reader
+   - Writer
+   - Scanner
+ - Counter

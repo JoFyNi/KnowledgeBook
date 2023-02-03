@@ -3,9 +3,10 @@ package main.recources;
 import org.w3c.dom.css.Counter;
 
 import java.io.*;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.net.MulticastSocket;
+import java.net.ServerSocket;
+import java.net.Socket;
+import java.util.*;
 
 public class AllForOne {
 
@@ -19,7 +20,8 @@ public class AllForOne {
      * CSVScanner -> reading a .csv file to check for different parameters
      */
 
-    class CSV {
+    static class CSV {
+        private List<String[]> lines;
         public void CSVReader(File file) {
             if (file.isFile()) {
                 List<List<String>> records = new ArrayList<>();
@@ -74,22 +76,104 @@ public class AllForOne {
             }
         }
 
-        public void CSVScanner(File file, String lookingFor) {
+        public void CSVScanner(File file, String searchTerm) {
+            String fileString = file.getAbsolutePath();
+            String searchFor;
             if (file.isFile()) {
                 List<List<String>> records = new ArrayList<>();
-                try (BufferedReader csvReader = new BufferedReader(new FileReader(file))) {
-                    String line;
-                    while ((line = csvReader.readLine()) != null) {
-                        String[] values = line.split(" "); // or ";" or "." or ":"
-                        records.add(Arrays.asList(values));
+                try {
+                    Scanner scanner = new Scanner(new File(fileString));
+                    scanner.useDelimiter(";");
+                    while (scanner.hasNext()) {
+                        searchFor = scanner.next();
+                        if (searchFor.equals(searchTerm)) {
+                            System.out.print(searchTerm + " gefunden!");
+                        }
                     }
+                    scanner.close();
                 } catch (IOException e) {
                     throw new RuntimeException(e);
                 }
                 System.out.println(records);
             }
         }
+        public String getRecord(int zeile, int spalte) {
+            return lines.get(zeile - 1)[spalte - 1];
+        }
+
+        public List<String[]> getLines() {
+            return lines;
+        }
     }
+
+    static class Server implements CommunicationThread {
+        MulticastSocket multicastSocket;
+        public Server() {}
+        @Override
+        public void connect() {
+            try {
+                ServerSocket serverSocket = new ServerSocket(multicastPORT);
+                System.out.println("Server gestartet auf Port " + multicastPORT);
+
+                Socket socket = serverSocket.accept();
+                System.out.println("Client verbunden");
+
+                DataInputStream in = new DataInputStream(socket.getInputStream());
+                DataOutputStream out = new DataOutputStream(socket.getOutputStream());
+
+                String receivedMessage = in.readUTF();
+                System.out.println("Nachricht vom Client empfangen: " + receivedMessage);
+
+                out.writeUTF("Nachricht erhalten");
+                System.out.println("Nachricht an Client gesendet");
+
+                in.close();
+                out.close();
+                socket.close();
+                serverSocket.close();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
+    }
+    static class Client implements CommunicationThread {
+        Socket socket;
+        public Client() {}
+        @Override
+        public void connect() {
+            // Implement server-specific connection logic
+            try {
+                socket = new Socket(multicastIP, multicastPORT);
+                System.out.println("Verbunden mit Server " + multicastIP + " auf Port " + multicastPORT);
+
+                DataInputStream in = new DataInputStream(socket.getInputStream());
+                DataOutputStream out = new DataOutputStream(socket.getOutputStream());
+
+                out.writeUTF("Hallo Server");
+                System.out.println("Nachricht an Server gesendet");
+
+                String receivedMessage = in.readUTF();
+                System.out.println("Nachricht vom Server empfangen: " + receivedMessage);
+
+                in.close();
+                out.close();
+                socket.close();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
+    }
+    static interface CommunicationThread {
+        public static final String multicastIP = "192.168.173.89";
+        public static final int multicastPORT = 3344;
+        public static final int messageValue = 1024;
+        public static final long breakTime = 3000;
+        public static final String connectionOnline = "connected";
+        public static final String connectionBreak = "lost connection";
+
+        void connect();
+    }
+
 
     public void counter() {
         Counter counter = new Counter() {
