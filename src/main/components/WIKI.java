@@ -65,7 +65,8 @@ public class WIKI {
                 )),
                 new Node("SearchAlgorithms", Arrays.asList(
                         new Node("BinarySearch", "Efficient algorithm that repeatedly divides the search interval in half"),
-                        new Node("InterpolationSearch", "Search algorithm that estimates the position of an element by using the value of the element and the value of its neighbors")
+                        new Node("InterpolationSearch", "Search algorithm that estimates the position of an element by using the value of the element and the value of its neighbors"),
+                        new Node("LinearSearch", "Linear search algorithm that compare two elements step bye step")
                 )),
                 new Node("Virus", Arrays.asList(
                         new Node("Creating", "Process of creating a virus"),
@@ -306,6 +307,18 @@ public class WIKI {
                             InterpolationSearch.start();
                             // opens a HTML file on the editPane
                             File file = new File("src\\SearchAlgorithms\\InterpolationSearch\\InterpolationSearch.html");
+                            editPane.setEditable(false);
+                            try {
+                                // Load the HTML file
+                                URL url = new URL("file:///"+file.getAbsolutePath());
+                                editPane.setPage(url);
+                            } catch (IOException ee) {
+                                ee.printStackTrace();
+                            }
+                        } else if (node != null && node.getUserObject().equals("LinearSearch")) {
+                            InterpolationSearch.start();
+                            // opens a HTML file on the editPane
+                            File file = new File("src\\SearchAlgorithms\\LinearSearch\\LinearSearch.html");
                             editPane.setEditable(false);
                             try {
                                 // Load the HTML file
