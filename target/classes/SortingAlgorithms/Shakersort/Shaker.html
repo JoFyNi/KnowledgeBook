@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Shakersort</title>
+</head>
+<body>
+<h1>Shakersort</h1>
+<h2>Example</h2>
+<p>Consider the following list of integers: [4, 6, 1, 3, 5, 2]</p>
+<p>After applying the Shakersort algorithm, the list would be sorted as: [1, 2, 3, 4, 5, 6]</p>
+<h2>Algorithm</h2>
+<pre>
+procedure shakerSort(arr)
+    is_sorted = false
+    left = 0
+    right = arr.length - 1
+    while not is_sorted
+        is_sorted = true
+        for i = left to right - 1
+            if arr[i] > arr[i+1]
+                swap(arr[i], arr[i+1])
+                is_sorted = false
+        right = right - 1
+        for i = right to left + 1
+            if arr[i] < arr[i-1]
+                swap(arr[i], arr[i-1])
+                is_sorted = false
+        left = left + 1
+</pre>
+<p>Shakersort, also known as Cocktail sort, is a variation of the bubble sort algorithm. It works by repeatedly iterating through the list, comparing adjacent elements and swapping them if they are in the wrong order. It then moves through the list in both directions, "shaking" out any remaining outliers to sort the elements. This process is repeated until the list is sorted. The difference between Shakersort and Bubblesort is that Shakersort makes two passes through the list, in opposite directions, to ensure that it captures any remaining out of order elements. As a result, Shakersort is a bit faster than Bubblesort, but it still has a time complexity of O(n^2) in the worst case and average case. It's not suitable for large data set but it can be a good alternative for small data set.
+</p>
+</body>
+</html>

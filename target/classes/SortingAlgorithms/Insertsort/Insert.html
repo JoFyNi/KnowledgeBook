@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>InsertSort</title>
+</head>
+<body>
+
+<h1>Insertion Sort</h1>
+
+<p>Insertion Sort is a simple sorting algorithm that builds the final sorted array one item at a time. It compares each element with the ones that come before it and places it in the correct position in the final sorted array. This results in the left side of the array being sorted as the algorithm progresses through the array.</p>
+
+<h2>Example</h2>
+
+<p>Let's consider the following unsorted list: [38, 27, 43, 3, 9, 82, 10]</p>
+
+<pre>
+Step 1: [38]
+Step 2: [27, 38]
+Step 3: [27, 38, 43]
+Step 4: [3, 27, 38, 43]
+Step 5: [3, 9, 27, 38, 43]
+Step 6: [3, 9, 10, 27, 38, 43]
+Step 7: [3, 9, 10, 27, 38, 43, 82]
+</pre>
+
+<p>The list is now sorted: [3, 9, 10, 27, 38, 43, 82]</p>
+
+<h2>Pseudocode</h2>
+
+<pre>
+procedure insertionSort(arr)
+  for i = 1 to arr.length-1
+    key = arr[i]
+    j = i-1
+    while j >= 0 and arr[j] > key
+      arr[j+1] = arr[j]
+      j = j-1
+    arr[j+1] = key
+    end for
+    end procedure
+</pre>
+<p>The pseudocode describes the basic steps of the Insertion Sort algorithm. It begins by iterating through the array starting at the second element (index 1) and considers each element as a "key" that needs to be inserted into the already-sorted portion of the array to the left of it. It then uses a nested while loop to compare the key with the elements to the left of it, and shifts elements to the right as necessary until the correct position for the key is found. Once the correct position is found, the key is inserted into that position and the next element is considered as the key. This process is repeated until the entire array is sorted.</p>
+<p>It's worth mentioning that the Insertion Sort has an O(n^2) time complexity in worst case and average case, but it's one of the fastest algorithms when the input is already partially sorted or nearly sorted, it also has a small memory footprint, as it only requires one additional memory space. It's also very simple to implement and understand, and thus is a common choice for small data sets and for educational purposes.  </p>
+</body>
+</html>

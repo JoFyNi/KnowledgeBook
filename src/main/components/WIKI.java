@@ -2,6 +2,7 @@ package main.components;
 
 import SearchAlgorithms.BinarySearch.BinarySearch;
 import SearchAlgorithms.InterpolationSearch.InterpolationSearch;
+import SearchAlgorithms.LinearSearch.LinearSearch;
 import SortingAlgorithms.Bubblesort.BubbleSort;
 import SortingAlgorithms.Insertsort.InsertSort;
 import SortingAlgorithms.Mergesort.MergeSort;
@@ -11,15 +12,15 @@ import SortingAlgorithms.Ripplesort.RippleSort;
 import SortingAlgorithms.Selectsort.SelectSort;
 import SortingAlgorithms.Shakersort.ShakerSort;
 import SortingAlgorithms.Simplesort.SimpleSort;
-
 import main.Calendar.calendarGUI;
+
 import javax.swing.*;
 import javax.swing.tree.*;
 import java.awt.event.*;
-import java.io.*;
+import java.io.File;
+import java.io.IOException;
 import java.net.URL;
 import java.util.*;
-import java.util.List;
 
 public class WIKI {
     public JPanel MainPanel;
@@ -32,9 +33,10 @@ public class WIKI {
     public JTextField searchField;
     public JToolBar PanelToolBar;
     public JButton ToolBarBtn;
-    private JButton SDBtn;
-    private JButton SSBtn;
-    private JButton calenderButton;
+    public JButton SDBtn;
+    public JButton SSBtn;
+    public JButton calenderButton;
+    public JTextField keyValIn;
     // create list to hold ToDo's
     ArrayList<String> toDoList = new ArrayList<>();
     List<Node> nodes;
@@ -148,11 +150,22 @@ public class WIKI {
                         TreePath path = new TreePath(nodes);
                         sideTree.scrollPathToVisible(path);
                         sideTree.setSelectionPath(path);
-                        bottomTextAreaPanel.setText(path.toString());
+                        bottomTextAreaPanel.setText(path + "\n");
                         System.out.println("erfolg");
                     } else {
                         JOptionPane.showMessageDialog(null, "Node not found!");
                     }
+                }
+            }
+        });
+        keyValIn = new JTextField();
+        keyValIn.addKeyListener(new KeyAdapter() {
+            public void keyPressed(KeyEvent e) {
+                if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+                    String input = keyValIn.getText();
+                    int newKey = Integer.parseInt(input);
+                    System.out.println(newKey);
+                    bottomTextAreaPanel.setText(newKey +" is found at index: " + LinearSearch.start(newKey));
                 }
             }
         });

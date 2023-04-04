@@ -2,10 +2,12 @@ package SearchAlgorithms.LinearSearch;
 
 public class LinearSearch {
 
-    public LinearSearch() {
+    public static int start(int key) {
         int[] a1= {10,20,30,50,70,90};
-        int key = 50;
+        //int key = 50;
         System.out.println(key+" is found at index: "+linearSearch(a1, key));
+        //resultArea(key, linearSearch(a1, key));
+        return linearSearch(a1, key);
     }
 
     public static int linearSearch(int[] arr, int key){

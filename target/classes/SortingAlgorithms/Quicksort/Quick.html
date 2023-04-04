@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>QuickSort</title>
+</head>
+<body>
+
+<h1>Quick Sort</h1>
+
+<p>Quick Sort is an efficient, in-place, divide-and-conquer sorting algorithm. It selects a 'pivot' element from the array and partition the other elements into two sub-arrays, according to whether they are less than or greater than the pivot. The sub-arrays are then recursively sorted. This continues until the base case of an empty or single-item array is reached, at which point the array is considered sorted. </p>
+
+<h2>Example</h2>
+
+<p>Let's consider the following unsorted list: [8, 3, 5, 4, 7, 6, 1, 2]</p>
+
+<pre>
+8 3 5 4 7 6 1 2
+
+Pivot = 8
+
+3 5 4 7 6 1 2  (8)
+
+3 5 4 1 2  (6 7)  (8)
+
+3 1 2  (4 5) (6 7 8)
+
+1 2  (3) (4 5 6 7 8)
+
+1  (2) (3 4 5 6 7 8)
+
+</pre>
+
+<p>The list is now sorted: [1, 2, 3, 4, 5, 6, 7,8]</p>
+<h2>Algorithm</h2>
+<pre>
+procedure quickSort(arr, low, high)
+    if low < high
+        pivotIndex = partition(arr, low, high)
+        quickSort(arr, low, pivotIndex)
+        quickSort(arr, pivotIndex + 1, high)
+
+procedure partition(arr, low, high)
+    pivot = arr[high]
+    i = low - 1
+    for j = low to high-1
+        if arr[j] <= pivot
+            i = i + 1
+            swap(arr[i], arr[j])
+    swap(arr[i + 1], arr[high])
+    return i + 1
+</pre>
+<p>In the quick sort algorithm, the partition function is used to divide the array into two parts and select the pivot element. It iterates through the array, swapping elements that are less than the pivot with elements that are greater than the pivot, ultimately returning the pivot's final position. The quickSort function is then called recursively on the left and right partition of the array. The base case is when the sub-array has less than 2 elements, in which case it's already sorted.</p>
+<p>It's worth noting that the Quick sort has a O(nlogn) average case time complexity and O(n^2) in the worst case scenario, and performs well when the pivot is chosen randomly or the middle element of the array. Additionally quick sort is not a stable sorting algorithm, which means that the relative position of equal elements can be changed in the final sorted array.</p>
+</body>
+</html>
