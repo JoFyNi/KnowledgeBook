@@ -13,16 +13,17 @@ import SortingAlgorithms.Selectsort.SelectSort;
 import SortingAlgorithms.Shakersort.ShakerSort;
 import SortingAlgorithms.Simplesort.SimpleSort;
 import main.Calendar.calendarGUI;
+import org.apache.commons.io.FileUtils;
 
 import javax.swing.*;
 import javax.swing.tree.*;
 import java.awt.event.*;
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
 import java.net.URL;
 import java.util.*;
+import java.util.List;
 
-public class WIKI {
+public class WIKI implements ActionListener {
     public JPanel MainPanel;
     public JPanel SidePanel;
     public JPanel BottomPanel;
@@ -37,6 +38,8 @@ public class WIKI {
     public JButton SSBtn;
     public JButton calenderButton;
     public JTextField keyValIn;
+    public JButton viewLogBtn;
+
     // create list to hold ToDo's
     ArrayList<String> toDoList = new ArrayList<>();
     List<Node> nodes;
@@ -131,7 +134,7 @@ public class WIKI {
                 parentNode.add(new DefaultMutableTreeNode(child.name));
             }
         }
-        // need to be in here (KeyListener == 0 if line is missing)
+               // need to be in here (KeyListener == 0 if line is missing)
         searchField = new JTextField();
         searchField.addKeyListener(new KeyAdapter() {
             public void keyPressed(KeyEvent e) {
@@ -533,10 +536,26 @@ public class WIKI {
                 }
             }
         });
-        ToolBarBtn = new JButton("ToDo's");
         // ActionsListener as a class with Implement ActionListener
-        ToolBarBtn.addActionListener(new startToDoList());
+        ToolBarBtn = new JButton("ToDo's");
+        ToolBarBtn.addActionListener(this);
         SDBtn = new JButton("SDev");
+        SDBtn.addActionListener(this);
+        SSBtn = new JButton("SSec");
+        SSBtn.addActionListener(this);
+        calenderButton = new JButton("calender");
+        calenderButton.addActionListener(this);
+        viewLogBtn = new JButton("logs");
+        viewLogBtn.addActionListener(this);
+    }
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        ToolBarBtn.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new startToDoList();
+            }
+        });
         SDBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -551,7 +570,6 @@ public class WIKI {
                 }
             }
         });
-        SSBtn = new JButton("SSec");
         SSBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -566,14 +584,17 @@ public class WIKI {
                 }
             }
         });
-
-
-        calenderButton = new JButton("calender");
         calenderButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 // code to show the calendar component when the button is clicked
                 new calendarGUI().setVisible(true);
+            }
+        });
+        viewLogBtn.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new LogViewer();
             }
         });
     }
@@ -619,5 +640,4 @@ public class WIKI {
 
     // Map to store the text for each node
     public static Map<Object, String> nodeTextMap = new HashMap<>();
-
 }
