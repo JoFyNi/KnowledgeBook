@@ -1,0 +1,44 @@
+Erstellen eines Artefaktes und das hinzufügen von Bibliotheken:
+
+1: Erstellen Sie das libs-Verzeichnis im Hauptverzeichnis Ihres Projekts (falls es noch nicht vorhanden ist).
+2: Kopieren Sie die FileFinder.jar in das libs-Verzeichnis.
+3: Öffnen Sie das Dialogfeld "Project Structure" über File -> Project Structure.
+4: Klicken Sie auf das Plus-Symbol (+) oben links und wählen Sie "JARs or directories" aus.
+5: Wählen Sie das libs-Verzeichnis aus und klicken Sie auf "OK".
+6: Gehen Sie zur Registerkarte "Artifacts" und klicken Sie auf das Plus-Symbol (+), um ein neues Artefakt hinzuzufügen.
+7: Wählen Sie "JAR" -> "From modules with dependencies..." aus.
+8: Wählen Sie das Modul aus, das Sie im Artefakt haben möchten (in Ihrem Fall wahrscheinlich Main).
+9: Stellen Sie sicher, dass das Feld "JAR files from libraries" auf Copy to the output directory and link via manifest eingestellt ist.     (dieser hacken muss aktiv sein damit Bibliotheken und Ressourcen mit in den Artefakt Ordner hinzugefügt werden)
+10: Klicken Sie auf "OK", um das Artefakt zu erstellen.
+
+Hier nochmal ausführlich wie man "Directory Contents" erstellt:
+
+Öffnen Sie das Dialogfeld "Project Structure" über File -> Project Structure.
+1: Wählen Sie im linken Menü "Artifacts" aus.
+2: Klicken Sie auf das Plus-Symbol (+) oben links und wählen Sie "JARs or directories" aus.
+3: Wählen Sie die Jar-Datei aus, die Sie in Ihr Artefakt aufnehmen möchten, und klicken Sie auf "OK".
+4: Wählen Sie im Dropdown-Menü "Output Layout" den Eintrag "JAR Application" aus.
+5: Klicken Sie auf das Plus-Symbol (+) rechts neben "Output Layout" und wählen Sie "Directory Content" aus.
+6: Wählen Sie den Ordner "src/main/resources" aus und klicken Sie auf "OK".
+7: Klicken Sie auf "Apply" und "OK", um die Änderungen zu speichern.
+8: Jetzt können Sie Ihr Artefakt über das Menü "Build -> Build Artifacts" erstellen und die erstellte Jar-Datei ausführen.
+
+
+Implementierung in die pom.xml datei:
+
+<dependency>
+    <groupId><group-id></groupId>
+    <artifactId><artifact-id></artifact-id>
+    <version><version></version>
+    <scope>system</scope>
+    <systemPath>${project.basedir}/src/main/resources/path/to/your/jarfile.jar</systemPath>
+</dependency>
+
+
+Eine mögliche .bat datei könnte sein:
+
+@echo off
+set "classpath=libs\FileFinder.jar"
+java -cp "%classpath%" componenten.Main
+start javaw -jar StringDeposit.jar
+exit
