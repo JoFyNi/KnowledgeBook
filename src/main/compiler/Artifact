@@ -31,14 +31,14 @@ Implementierung in die pom.xml datei:
     <artifactId><artifact-id></artifact-id>
     <version><version></version>
     <scope>system</scope>
-    <systemPath>${project.basedir}/src/main/resources/path/to/your/jarfile.jar</systemPath>
+    <systemPath>${project.basedir}/src/main/resources/path/to/your/jarFile.jar</systemPath>
 </dependency>
 
 
 Eine mögliche .bat datei könnte sein:
 
 @echo off
-set "classpath=libs\FileFinder.jar"
-java -cp "%classpath%" componenten.Main
-start javaw -jar StringDeposit.jar
+set "classpath=libs\jarFile.jar"
+java -cp "%classpath%" path/to/Main
+start javaw -jar artifactJarFile.jar
 exit
